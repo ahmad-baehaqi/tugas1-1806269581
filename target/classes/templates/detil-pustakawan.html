@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detil Pustakawan</title>
+    <object th:include="fragments/navigasi :: css" th:remove="tag"></object>
+    <object th:inclide="fragments/navigasi :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/navigasi :: navbar (headerTitle='Home')"></nav>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center"><b>Detail Pustakawan</b></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item list-group-item-light"><b>Nama</b></li>
+                                    <li class="list-group-item list-group-item-light"><b>NIP</b></li>
+                                    <li class="list-group-item list-group-item-light"><b>Tempat/Tanggal Lahir</b></li>
+                                    <li class="list-group-item list-group-item-light"><b>Jenis Kelamin</b></li>
+                                    <li class="list-group-item list-group-item-light"><b>Spesialisasi</b></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item" th:text="${pustakawan.nama}"></li>
+                                    <li class="list-group-item" th:text="${pustakawan.nip}"></li>
+                                    <li class="list-group-item"
+                                        th:text="${pustakawan.tempatLahir} + '/' + ${pustakawan.tanggalLahir}"></li>
+                                    <li class="list-group-item"
+                                        th:text="${pustakawan.jenisKelamin} == 1 ? 'Laki-laki' : 'Perempuan'"></li>
+                                    <li class="list-group-item" th:if="${pustakawan.setSpesialisasi.size() == 0}">-</li>
+                                    <li class="list-group-item"
+                                        th:each="spesialisasi,iterationStatus : ${pustakawan.setSpesialisasi}">
+                                        <span th:text="${spesialisasi.nama}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+
+</body>
+
+</html>

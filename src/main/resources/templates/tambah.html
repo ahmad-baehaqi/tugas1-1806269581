@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Pustakawan</title>
+    <object th:include="fragments/navigasi :: css" th:remove="tag"></object>
+    <object th:include="fragments/navigasi :: js" th:remove="tag"></object>
+
+</head>
+
+<body>
+    <nav th:replace="fragments/navigasi :: navbar (headerTitle='Home')"></nav>
+    <div class="alert alert-success" role="alert">
+        <strong>Success!</strong> Data berhasil ditambahkan!
+    </div>
+</body>
+
+</html>

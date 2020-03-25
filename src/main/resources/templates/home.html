@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Sistem Informasi Perpustakaan</title>
+    <object th:include="fragments/navigasi :: css" th:remove="tag"></object>
+    <object th:inclide="fragments/navigasi :: js" th:remove="tag"></object>
+</head>
+
+<body class="bgimg">
+    <nav th:replace="fragments/navigasi :: navbar (headerTitle='Home')"></nav>
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                Aplikasi Sistem Informasi Perpustakaan
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Selamat Datang</h5>
+                <br>
+                <a th:href="@{#}" class="btn btn-primary">Data Pustakawan</a>
+                <a th:href="@{#}" class="btn btn-primary">Data Perpustakaan</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Pustakawan</title>
+    <object th:include="fragments/navigasi :: css" th:remove="tag"></object>
+    <object th:inclide="fragments/navigasi :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/navigasi :: navbar (headerTitle='Daftar Pustakawan')"></nav><br>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h3><b>Daftar Pustakawan</b></h3>
+                    </div>
+                    <div class="col-md-3" align="right">
+                        <a th:href="@{/pustakawan/add}" class="btn btn-primary" role="button">Tambah
+                            Pustakawan</a>
+                    </div>
+                </div>
+            </div><br>
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">NIP</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Tempat Lahir</th>
+                            <th scope="col">Tanggal Lahir</th>
+                            <th scope="col">Spesialisasi</th>
+                            <th scope="col">Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pustakawan, iterStat : *{pustakawanList}">
+                            <th scope="row" th:text="${iterStat.count}"></th>
+                            <td><a th:href="@{'/pustakawan?nip=' + ${pustakawan.nip}}" th:text="${pustakawan.nama}"></a>
+                            </td>
+                            <td th:text="${pustakawan.nip}"></td>
+                            <td th:text="${pustakawan.jenisKelamin} == '1' ? 'Laki-laki' : 'Perempuan'"></td>
+                            <td th:text="${pustakawan.tempatLahir}"></td>
+                            <td th:text="${pustakawan.tanggalLahir}"></td>
+                            <td>
+                                <span th:if="${pustakawan.setSpesialisasi.size() == 0}">-</span>
+                                <span th:each="spesialisasi, iterStat : *{pustakawan.setSpesialisasi}">
+                                    <span th:text="${spesialisasi.nama}"></span>
+                                    <th:block th:if="${!iterStat.last}">,</th:block>
+                                </span>
+                            </td>
+                            <td style="text-align: center">
+                                <a type="button" class="btn btn-info"
+                                    th:href="@{'/jadwal/tambah/' + ${pustakawan.nip}}">Jadwal</a>
+                                <a type="button" class="btn btn-primary"
+                                    th:href="@{'/pustakawan/update/' + ${pustakawan.id}}">Ubah</a>
+                                <a type="button" class="btn btn-danger"
+                                    th:href="@{'/pustakawan/delete/' + ${pustakawan.id}}">Hapus</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
